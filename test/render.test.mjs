@@ -602,6 +602,22 @@ check('does not render again after the boot window closes', () => {
   assert.equal(resolve(renderSlot()), null);
 });
 
+// The loader parses package.json as JavaScript when it composes a profile bundle.
+// A UTF-8 BOM there makes it "skip profile bundle ... SyntaxError: Unexpected
+// token ''" — silently, with no splash and no host half. That cost an afternoon,
+// so it gets an assertion.
+check('package.json carries no byte order mark and parses', () => {
+  const bytes = fs.readFileSync(new URL('../package.json', import.meta.url));
+  assert.ok(
+    !(bytes[0] === 0xef && bytes[1] === 0xbb && bytes[2] === 0xbf),
+    'package.json starts with a UTF-8 BOM — the profile loader will skip the bundle',
+  );
+  const manifest = JSON.parse(bytes.toString('utf8'));
+  assert.equal(manifest.name, 'dsh-550w-boot');
+  assert.equal(manifest.dsh.client.platform, 'web');
+  assert.equal(manifest.dsh.bundle.patch, './cordis.patch.yml');
+});
+
 // ── Report ────────────────────────────────────────────────────────────────
 let failed = 0;
 for (const [ok, name] of results) {

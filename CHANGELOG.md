@@ -1,5 +1,12 @@
 # Changelog
 
+## 1.0.5 — 2026-10-05
+
+- **「开机画面不弹」的真凶：`package.json` 开头多了个 UTF-8 BOM**。我用 PowerShell 的 `Set-Content -Encoding utf8` 改版本号时被写进去的（1.0.0 → 1.0.1 那次，时间点正好对上画面开始消失）。DSH 装载 profile bundle 时把清单当 JS 解析，于是每一层都安静地跳过它：
+  `dsh: skipping profile bundle "dsh-550w-boot": SyntaxError: Unexpected token '', "{`
+  宿主半不进层栈、浏览器半也不会被投喂——**开机画面、上报、窗口条染色全部消失**，而且不报错，只有手动 `--dump-config` 才看得见。
+- 现在清单是无 BOM 的 UTF-8，并加了一条断言把这个坑钉死：`package.json 不得带 BOM 且必须能解析`（26/26）。
+
 ## 1.0.4 — 2026-10-05
 
 - **上报改走真能落地的那条路**：桌面宿主对任何未声明的路径都回 401（连 `/api/dsh-imagegen/nope` 都是 401，只有 `settings/describe` 这类 settings bridge 放行），所以 1.0.3 的宿主路由根本收不到东西——**空日志什么都不能证明**。现在浏览器侧同时往 `http://127.0.0.1:19399/r` 发一份（`text/plain` + `mode:"no-cors"`：简单请求、无预检、不读回包），由开发者在宿主上跑的监听器接住。
