@@ -158,8 +158,8 @@ check('registers into shell.overlay at the top of the stack', () => {
   assert.equal(meta.order, 9999);
 });
 
-check('arms a keydown enter listener and the hold safety timer', () => {
-  assert.deepEqual(listeners.map((l) => l.type), ['keydown']);
+check('arms a keydown enter listener, the error reporters and the hold safety timer', () => {
+  assert.deepEqual(listeners.map((l) => l.type), ['keydown', 'error', 'unhandledrejection']);
   assert.ok(timers.some((t) => t.ms > 1000), 'no retire timer was armed');
 });
 
@@ -590,7 +590,7 @@ check('dispose() clears every timer, listener and sheet it created', () => {
 
   mount(); // a second, clean lifecycle must behave the same
   assert.equal(styles.length, 1);
-  assert.equal(listeners.length, 1);
+  assert.equal(listeners.length, 3);
   for (const d of disposers.splice(0)) d();
   assert.equal(styles.length, 0);
   assert.equal(listeners.length, 0);

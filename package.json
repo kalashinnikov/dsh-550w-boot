@@ -1,6 +1,6 @@
 ﻿{
   "name": "dsh-550w-boot",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "550W / MOSS (The Wandering Earth) boot sequence for the DeepSeek Harness Web UI: five real terminal windows pop up and print real tool output, a white-line camera unit stares from the middle, the wordmark turns a half turn into MOSS, the picture tears and a Stellaris-style hyperlane map fades in — then it holds until a key is pressed. Zero dependencies, zero build step, one client file.",
   "license": "MIT",
   "author": "m550w",
