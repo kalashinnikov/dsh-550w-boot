@@ -17,11 +17,11 @@
   ],
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/OWNER/dsh-550w-boot.git"
+    "url": "git+https://github.com/kalashinnikov/dsh-550w-boot.git"
   },
-  "homepage": "https://github.com/OWNER/dsh-550w-boot#readme",
+  "homepage": "https://github.com/kalashinnikov/dsh-550w-boot#readme",
   "bugs": {
-    "url": "https://github.com/OWNER/dsh-550w-boot/issues"
+    "url": "https://github.com/kalashinnikov/dsh-550w-boot/issues"
   },
   "dsh": {
     "bundle": {
