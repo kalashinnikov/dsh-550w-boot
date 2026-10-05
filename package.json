@@ -1,0 +1,55 @@
+{
+  "name": "dsh-550w-boot",
+  "version": "1.0.0",
+  "description": "550W / MOSS (The Wandering Earth) boot sequence for the DeepSeek Harness Web UI: five real terminal windows pop up and print real tool output, a white-line camera unit stares from the middle, the wordmark turns a half turn into MOSS, the picture tears and a Stellaris-style hyperlane map fades in — then it holds until a key is pressed. Zero dependencies, zero build step, one client file.",
+  "license": "MIT",
+  "author": "m550w",
+  "type": "module",
+  "main": "lib/index.js",
+  "exports": {
+    ".": "./lib/index.js",
+    "./client": "./lib/client.js",
+    "./package.json": "./package.json"
+  },
+  "files": [
+    "lib",
+    "cordis.patch.yml"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/OWNER/dsh-550w-boot.git"
+  },
+  "homepage": "https://github.com/OWNER/dsh-550w-boot#readme",
+  "bugs": {
+    "url": "https://github.com/OWNER/dsh-550w-boot/issues"
+  },
+  "dsh": {
+    "bundle": {
+      "patch": "./cordis.patch.yml"
+    },
+    "client": {
+      "platform": "web",
+      "inject": [
+        "@deepseek-ai/dsh-client-ui-slots"
+      ]
+    }
+  },
+  "keywords": [
+    "deepseek-harness",
+    "dsh",
+    "dsh-plugin",
+    "splash",
+    "boot",
+    "boot-sequence",
+    "550w",
+    "moss",
+    "the-wandering-earth",
+    "stellaris",
+    "star-map",
+    "terminal",
+    "ui"
+  ],
+  "scripts": {
+    "test": "node test/render.test.mjs"
+  }
+}

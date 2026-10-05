@@ -1,0 +1,5 @@
+# Bundle patch: mount this plugin's row. The row name must match the package
+# name; delete this file's insert block to restore the stock boot behaviour.
+- insert:
+    - id: 550w-boot
+      name: 'dsh-550w-boot'

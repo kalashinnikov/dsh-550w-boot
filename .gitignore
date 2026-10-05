@@ -1,0 +1,13 @@
+# dependencies / build output
+node_modules/
+tools/frames/
+*.log
+
+# editors / OS
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+
+# tarballs from `npm pack`
+*.tgz
