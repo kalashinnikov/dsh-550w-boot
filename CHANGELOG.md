@@ -1,5 +1,10 @@
 # Changelog
 
+## 1.0.2 — 2026-10-05
+
+- **开机画面「有时不弹」的真凶**：`BOOT_WINDOW_MS` 原本是 **5 秒**——只有客户端包被求值后 5 秒内、壳把 overlay 槽挂上，`Splash()` 才会渲染。冷启动带二十个插件时壳挂槽经常慢于 5 秒，于是开机画面时有时无（我自己的预览壳是毫秒级挂载，所以一直复现不出来）。窗口放宽到 **60 秒**。
+- 顺带加了一行诊断：真的晚了就在控制台说清楚（`[dsh-550w-boot] no splash: the shell mounted its overlay Ns after …`），下次不用猜。
+
 ## 1.0.1 — 2026-10-05
 
 - **桌面壳的窗口条终于归位**：DSH 桌面端用 Electron 的 `titleBarStyle:"hidden"` + `titleBarOverlay`（40px，见 `lib/main.js`），那一条带最小化/最大化/关闭的白带画在网页之上，任何 CSS 都够不到——开机画面上方横着一条白条，一直很扎眼。现在开机画面借它的两个探针变量（`--dsw-specific-sidebar-fill` / `--dsw-alias-label-primary`）把它染成画面的一部分，并在退场时把颜色还给应用。

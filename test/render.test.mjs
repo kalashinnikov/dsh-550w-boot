@@ -598,7 +598,7 @@ check('dispose() clears every timer, listener and sheet it created', () => {
 
 check('does not render again after the boot window closes', () => {
   mount();
-  now += 5001;
+  now += 60001;
   assert.equal(resolve(renderSlot()), null);
 });
 
