@@ -107,6 +107,25 @@
       document.head.appendChild(s);
     }
 
+    // ?winbar=1 reproduces the desktop shell: `<html data-windows-titlebar>` plus a
+    // 40px band drawn above the page (that is the Electron titleBarOverlay, which no
+    // CSS of ours can reach). The colour here is the one the plugin hands the shell
+    // through the two probed variables, so the screenshot shows the real thing.
+    if (new URLSearchParams(location.search).get("winbar")) {
+      document.documentElement.setAttribute("data-windows-titlebar", "");
+      const bar = document.createElement("div");
+      bar.style.cssText = "position:fixed;left:0;right:0;top:0;height:40px;z-index:99999;" +
+        "background:#04060b;display:flex;align-items:center;justify-content:flex-end;" +
+        "padding:0 14px;box-sizing:border-box;gap:26px;pointer-events:none";
+      for (const glyph of ["\u2014", "\u25a1", "\u2715"]) {
+        const i = document.createElement("i");
+        i.textContent = glyph;
+        i.style.cssText = "font:14px/1 system-ui,sans-serif;font-style:normal;color:#cfe2ff";
+        bar.appendChild(i);
+      }
+      document.body.appendChild(bar);
+    }
+
     // ?probe=1 prints the live geometry and computed opacity of every terminal
     // flow into the page, so "the lines are missing" can be told apart from
     // "the lines are clipped" or "the freeze never started them".

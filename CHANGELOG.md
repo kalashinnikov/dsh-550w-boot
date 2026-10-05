@@ -1,5 +1,11 @@
 # Changelog
 
+## 1.0.1 — 2026-10-05
+
+- **桌面壳的窗口条终于归位**：DSH 桌面端用 Electron 的 `titleBarStyle:"hidden"` + `titleBarOverlay`（40px，见 `lib/main.js`），那一条带最小化/最大化/关闭的白带画在网页之上，任何 CSS 都够不到——开机画面上方横着一条白条，一直很扎眼。现在开机画面借它的两个探针变量（`--dsw-specific-sidebar-fill` / `--dsw-alias-label-primary`）把它染成画面的一部分，并在退场时把颜色还给应用。
+- HUD 在桌面壳里下移 40px（`html[data-windows-titlebar]`），不再被那条覆盖层压住。
+- `tools/preview.html` 新增 `?winbar=1`：复现桌面壳的 40px 窗口条，用于截图上核对。
+
 ## 1.0.0 — 2026-10-05
 
 首个公开版本。开机自检画面从「一屏五行日志」长成了现在这套：
